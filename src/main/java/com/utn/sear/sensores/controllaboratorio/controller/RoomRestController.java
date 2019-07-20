@@ -2,8 +2,11 @@ package com.utn.sear.sensores.controllaboratorio.controller;
 
 import com.utn.sear.sensores.controllaboratorio.domain.Lectura;
 import com.utn.sear.sensores.controllaboratorio.domain.Room;
+import com.utn.sear.sensores.controllaboratorio.domain.RoomConLectura;
+import com.utn.sear.sensores.controllaboratorio.repository.LecturaRepository;
 import com.utn.sear.sensores.controllaboratorio.repository.RoomRepository;
 import com.utn.sear.sensores.controllaboratorio.service.LecturaService;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,10 +26,23 @@ public class RoomRestController {
     private final RoomRepository roomRepository;
     private final LecturaService lecturaService;
     private final RestTemplate restTemplate;
+    private final LecturaRepository lecturaRepository;
 
     @GetMapping("/rooms")
-    public List<Room> obtnerTodas() {
-        return roomRepository.findAll();
+    public List<RoomConLectura> obtnerTodas() {
+        List<Room> rooms = roomRepository.findAll();
+
+        List<RoomConLectura> roomsConLecturas = new ArrayList<>();
+
+        for (Room room : rooms) {
+            RoomConLectura roomConLectura = new RoomConLectura();
+            roomConLectura.setRoom(room);
+            roomConLectura.setUltimaLectura(lecturaRepository.findByRoomIdOrderByIdDesc(room.getId()).get(0));
+
+            roomsConLecturas.add(roomConLectura);
+        }
+
+        return roomsConLecturas;
     }
 
     @DeleteMapping("/rooms/{id}")

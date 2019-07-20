@@ -17,7 +17,13 @@ public class LecturaRestController {
     private final LecturaRepository lecturaRepository;
 
     @GetMapping("/rooms/{roomId}/lectura")
-    public List<Lectura> obtenerLecturaActualPorId(@PathVariable Long roomId) {
+    public List<Lectura> obtenerLecturasPorId(@PathVariable Long roomId) {
         return lecturaRepository.findByRoomId(roomId);
     }
+
+    @GetMapping("/rooms/{roomId}/lectura/actual")
+    public Lectura obtenerLecturaActualPorId(@PathVariable Long roomId) {
+        return lecturaRepository.findByRoomIdOrderByIdDesc(roomId).get(0);
+    }
+
 }

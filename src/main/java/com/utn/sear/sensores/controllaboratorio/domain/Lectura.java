@@ -18,8 +18,8 @@ public class Lectura {
     private Long id;
     private Long roomId;
     private String temperatura;
-    private String movimiento;
-    private Boolean humedad;
+    private Boolean movimiento;
+    private String humedad;
     private LocalDateTime fecha;
 
     @OneToMany(mappedBy = "lectura")

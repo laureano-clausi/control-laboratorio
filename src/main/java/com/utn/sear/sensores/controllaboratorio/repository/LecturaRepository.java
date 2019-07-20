@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface LecturaRepository extends JpaRepository<Lectura, Long> {
 
     List<Lectura> findByRoomId(Long roomId);
+    List<Lectura> findByRoomIdOrderByIdDesc(Long roomId);
+    
 }
