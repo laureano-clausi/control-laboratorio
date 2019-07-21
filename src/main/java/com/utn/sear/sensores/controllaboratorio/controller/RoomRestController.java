@@ -37,7 +37,14 @@ public class RoomRestController {
         for (Room room : rooms) {
             RoomConLectura roomConLectura = new RoomConLectura();
             roomConLectura.setRoom(room);
-            roomConLectura.setUltimaLectura(lecturaRepository.findByRoomIdOrderByIdDesc(room.getId()).get(0));
+            Lectura lectura;
+            List<Lectura> lecturas = lecturaRepository.findByRoomIdOrderByIdDesc(room.getId());
+            if (lecturas.isEmpty()) {
+                lectura = new Lectura();
+            } else {
+                lectura = lecturas.get(0);
+            }
+            roomConLectura.setUltimaLectura(lectura);
 
             roomsConLecturas.add(roomConLectura);
         }
