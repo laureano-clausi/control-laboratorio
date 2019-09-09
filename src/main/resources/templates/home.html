@@ -29,14 +29,17 @@ and open the template in the editor.
         <template id="template-listado-room">
             <div>
                 <div v-for="room in rooms">
-                    <div class="divider"></div>
-                    <div class="section">
-                        <h5>{{room.room.nombre}}</h5>
-                        <p>ip:{{room.ultimaLectura.ip}}</p>
-                        <p>{{room.ultimaLectura.temperatura}}ªC</p>
-                        <p>{{room.ultimaLectura.humedad}}% humedad</p>
-                        <p>movimiento {{room.ultimaLectura.movimiento}}</p>
-                        <p>{{room.ultimaLectura.fecha}}</p>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="section">
+                                <h5>{{room.room.nombre}}</h5>
+                                <p>ip:{{room.ultimaLectura.ip}}</p>
+                                <p>{{room.ultimaLectura.temperatura}}ªC</p>
+                                <p>{{room.ultimaLectura.humedad}}% humedad</p>
+                                <p>movimiento {{room.ultimaLectura.movimiento}}</p>
+                                <p>{{room.ultimaLectura.fecha}}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -44,14 +47,16 @@ and open the template in the editor.
 
 
         <template id="crear-room">
-            <div>
-                <input type="text" v-model="room.nombre" name="nombre" required></input>
-                <input type="text" v-model="room.ip" name="ip" required></input>
+            <div class="card">
+                <div class="card-content">
+                    <input type="text" v-model="room.nombre" name="nombre" required></input>
+                    <input type="text" v-model="room.ip" name="ip" required></input>
 
-                <button v-on:click="agregar" class="btn btn-secondary" type="button">
-                    <i class="ft-plus"></i> Agregar
-                </button>
+                    <button v-on:click="agregar" class="btn btn-secondary" type="button">
+                        <i class="ft-plus"></i> Agregar
+                    </button>
 
+                </div>
             </div>
         </template>
 
