@@ -12,4 +12,9 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/errores")
+    public String errores(Model model) {
+        return "errores";
+    }
+
 }

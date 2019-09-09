@@ -3,6 +3,7 @@ package com.utn.sear.sensores.controllaboratorio.controller;
 import com.utn.sear.sensores.controllaboratorio.domain.Lectura;
 import com.utn.sear.sensores.controllaboratorio.domain.Room;
 import com.utn.sear.sensores.controllaboratorio.domain.RoomConLectura;
+import com.utn.sear.sensores.controllaboratorio.repository.ErrorRepository;
 import com.utn.sear.sensores.controllaboratorio.repository.LecturaRepository;
 import com.utn.sear.sensores.controllaboratorio.repository.RoomRepository;
 import com.utn.sear.sensores.controllaboratorio.service.LecturaService;
@@ -27,6 +28,7 @@ public class RoomRestController {
     private final LecturaService lecturaService;
     private final RestTemplate restTemplate;
     private final LecturaRepository lecturaRepository;
+    private final ErrorRepository errorRepository;
 
     @GetMapping("/rooms")
     public List<RoomConLectura> obtnerTodas() {
@@ -72,6 +74,13 @@ public class RoomRestController {
     @GetMapping("/live/rooms/ip/{ip}")
     public String obtenerLecturaActualPorIp(@PathVariable String ip) {
         return restTemplate.getForObject(ip, String.class);
+    }
+
+    @GetMapping("/rooms/{roomId}/error")
+    public List<String> obtenerLecturaActualPorIp(@PathVariable long roomId) {
+        //        return errorRepository.findByRoomId(roomId);
+
+        return null;
     }
 
 }
