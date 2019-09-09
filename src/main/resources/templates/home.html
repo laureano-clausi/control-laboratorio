@@ -15,29 +15,35 @@ and open the template in the editor.
 
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es.js"></script>-->
 
         <!-- development version, includes helpful console warnings -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
     <body>
-        <div id="app">
-            <crear-room></crear-room>
-            <listado-room></listado-room>
+        <div class="container">
+            <div id="app">
+                <crear-room></crear-room>
+                <listado-room></listado-room>
+            </div>
         </div>
-
         <template id="template-listado-room">
             <div>
-                <div v-for="room in rooms">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="section">
-                                <h5>{{room.room.nombre}}</h5>
-                                <p>ip:{{room.ultimaLectura.ip}}</p>
-                                <p>{{room.ultimaLectura.temperatura}}ªC</p>
-                                <p>{{room.ultimaLectura.humedad}}% humedad</p>
-                                <p>movimiento {{room.ultimaLectura.movimiento}}</p>
-                                <p>{{room.ultimaLectura.fecha}}</p>
+                <div class="row">
+                    <div v-for="room in rooms">
+                        <div class="col s12 m6">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="section">
+                                        <h5>{{room.room.nombre}}</h5>
+                                        <p>ip:{{room.room.ip}}</p>
+                                        <p>{{room.ultimaLectura.temperatura}}ªC</p>
+                                        <p>{{room.ultimaLectura.humedad}}% humedad</p>
+                                        <p>ultimo movimiento: {{room.ultimaLectura.movimientoUltimaFecha | formatDate}}</p>
+                                        <p>fecha: {{room.ultimaLectura.fecha |  formatDate}}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

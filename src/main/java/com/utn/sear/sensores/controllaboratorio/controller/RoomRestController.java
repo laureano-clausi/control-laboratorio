@@ -39,11 +39,13 @@ public class RoomRestController {
             roomConLectura.setRoom(room);
             Lectura lectura;
             List<Lectura> lecturas = lecturaRepository.findByRoomIdOrderByIdDesc(room.getId());
+
             if (lecturas.isEmpty()) {
                 lectura = new Lectura();
             } else {
                 lectura = lecturas.get(0);
             }
+            lectura.setMovimientoUltimaFecha(lecturaRepository.obtenerFechaUltimoMovimiento(room.getId()));
             roomConLectura.setUltimaLectura(lectura);
 
             roomsConLecturas.add(roomConLectura);

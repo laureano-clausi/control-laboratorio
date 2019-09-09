@@ -34,5 +34,14 @@ insert into room
 
 insert into lectura
 (id , room_id  , temperatura,humedad,movimiento,fecha) values 
-(1  , 1        , '18'       ,'64'   ,1         ,now());
+(1  , 1        , ''         ,''     ,1         ,now()),
+(2  , 1        , '18'       ,'64'   ,1         ,now()),
+(3  , 1        , '18'       ,'64'   ,1         ,now()),
+(4  , 1        , '18'       ,'64'   ,1         ,now()),
+(5  , 1        , '18'       ,'64'   ,1         ,now());
 
+
+insert into error 
+(lectura_id, mensaje) values
+(1, 'error al leer la temperatura'),
+(2, 'error al leer la humedad');

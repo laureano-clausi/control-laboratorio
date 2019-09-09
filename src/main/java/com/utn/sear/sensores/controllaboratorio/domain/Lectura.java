@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
 import lombok.Data;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 @Data
@@ -19,6 +20,8 @@ public class Lectura {
     private Long roomId;
     private String temperatura;
     private Boolean movimiento;
+    @Transient
+    private LocalDateTime movimientoUltimaFecha;
     private String humedad;
     private LocalDateTime fecha;
 
