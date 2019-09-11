@@ -5,13 +5,11 @@ Vue.component('errores', {
             errores: []
         };
     },
-    methods: {
-        agregar: function () {
-            var self = this;
-            axios.get('/api/rooms/' + url.searchParams.get("id") + '/error').then(response => (self.errores = response.data));
-        }
-    },
     created: function () {
+        var self = this;
+        var url = new URL(window.location);
+        
+        axios.get('/api/rooms/' + url.searchParams.get("id") + '/error').then(response => (self.errores = response.data));
 
     },
     template: document.getElementById("errores").innerHTML

@@ -44,6 +44,9 @@ and open the template in the editor.
                                         <p>fecha: {{room.ultimaLectura.fecha |  formatDate}}</p>
                                     </div>
                                 </div>
+                                <div class="card-action">
+                                    <a v-bind:href="'/errores?id='+room.room.id">Ver errores</a>
+                                </div>
                             </div>
                         </div>
                     </div>

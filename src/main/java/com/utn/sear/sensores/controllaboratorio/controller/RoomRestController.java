@@ -37,23 +37,36 @@ public class RoomRestController {
         List<RoomConLectura> roomsConLecturas = new ArrayList<>();
 
         for (Room room : rooms) {
-            RoomConLectura roomConLectura = new RoomConLectura();
-            roomConLectura.setRoom(room);
-            Lectura lectura;
-            List<Lectura> lecturas = lecturaRepository.findByRoomIdOrderByIdDesc(room.getId());
-
-            if (lecturas.isEmpty()) {
-                lectura = new Lectura();
-            } else {
-                lectura = lecturas.get(0);
-            }
-            lectura.setMovimientoUltimaFecha(lecturaRepository.obtenerFechaUltimoMovimiento(room.getId()));
-            roomConLectura.setUltimaLectura(lectura);
+            RoomConLectura roomConLectura = completarRoomConLectura(room);
 
             roomsConLecturas.add(roomConLectura);
         }
 
         return roomsConLecturas;
+    }
+
+    @GetMapping("/rooms/{roomId}")
+    public RoomConLectura obtenerRoom(@PathVariable Long roomId) {
+        Room room = roomRepository.findById(roomId).orElseThrow();
+
+        RoomConLectura roomConLectura = completarRoomConLectura(room);
+
+        return roomConLectura;
+    }
+
+    private RoomConLectura completarRoomConLectura(Room room) {
+        RoomConLectura roomConLectura = new RoomConLectura();
+        roomConLectura.setRoom(room);
+        Lectura lectura;
+        List<Lectura> lecturas = lecturaRepository.findByRoomIdOrderByIdDesc(room.getId());
+        if (lecturas.isEmpty()) {
+            lectura = new Lectura();
+        } else {
+            lectura = lecturas.get(0);
+        }
+        lectura.setMovimientoUltimaFecha(lecturaRepository.obtenerFechaUltimoMovimiento(room.getId()));
+        roomConLectura.setUltimaLectura(lectura);
+        return roomConLectura;
     }
 
     @DeleteMapping("/rooms/{id}")
