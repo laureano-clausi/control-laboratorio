@@ -78,9 +78,7 @@ public class RoomRestController {
 
     @GetMapping("/rooms/{roomId}/error")
     public List<String> obtenerLecturaActualPorIp(@PathVariable long roomId) {
-        //        return errorRepository.findByRoomId(roomId);
-
-        return null;
+        return errorRepository.findByRoomId(roomId);
     }
 
 }
