@@ -1,6 +1,7 @@
 package com.utn.sear.sensores.controllaboratorio.service;
 
 import com.utn.sear.sensores.controllaboratorio.domain.Lectura;
+import com.utn.sear.sensores.controllaboratorio.domain.LecturaVo;
 import com.utn.sear.sensores.controllaboratorio.domain.Room;
 import com.utn.sear.sensores.controllaboratorio.repository.LecturaRepository;
 import com.utn.sear.sensores.controllaboratorio.repository.RoomRepository;
@@ -31,8 +32,9 @@ public class LecturaService {
     }
 
     public Lectura obtenerLectura(Room room) throws RestClientException {
-        Lectura lectura = restTemplate.getForObject("http://" + room.getIp(), Lectura.class);
-        lectura.setRoomId(room.getId());
+        LecturaVo lecturaVo = restTemplate.getForObject("http://" + room.getIp(), LecturaVo.class);
+        lecturaVo.setRoomId(room.getId());
+        Lectura lectura = lecturaVo.toLectura();
         lecturaRepository.save(lectura);
         return lectura;
     }
