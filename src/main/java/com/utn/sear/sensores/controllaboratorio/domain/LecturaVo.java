@@ -2,20 +2,14 @@ package com.utn.sear.sensores.controllaboratorio.domain;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
 import lombok.Data;
-import javax.persistence.Id;
 import javax.persistence.Transient;
 
 @Data
 public class LecturaVo {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long roomId;
     private String temperatura;
@@ -38,11 +32,18 @@ public class LecturaVo {
         lectura.setHumedad(humedad);
         lectura.setFecha(fecha);
 
+        return lectura;
+    }
+
+    public List<Error> toErrores(Long lecturaId) {
+
         ArrayList<Error> erroresLectura = new ArrayList<>();
 
         for (String error : errores) {
-            erroresLectura.add(new Error(null, null, error));
+            erroresLectura.add(new Error(null, roomId, lecturaId, fecha, error));
         }
-        return lectura;
+
+        return erroresLectura;
+
     }
 }

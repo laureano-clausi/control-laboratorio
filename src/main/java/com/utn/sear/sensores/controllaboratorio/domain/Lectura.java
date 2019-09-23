@@ -24,7 +24,4 @@ public class Lectura {
     private LocalDateTime movimientoUltimaFecha;
     private String humedad;
     private LocalDateTime fecha;
-
-    @OneToMany(mappedBy = "lectura")
-    private Set<Error> errores;
 }

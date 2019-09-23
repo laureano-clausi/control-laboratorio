@@ -34,7 +34,7 @@ and open the template in the editor.
             <div>
                 <h1>Errores</h1>
                 <div v-for="error in errores">
-                    <p>{{error}}</p>
+                    <p>{{error.fecha | formatDate}}::  {{error.mensaje}}</p>
                 </div>
             </div>
         </template>
@@ -51,7 +51,7 @@ and open the template in the editor.
                                     <p>{{room.ultimaLectura.temperatura}}ªC</p>
                                     <p>{{room.ultimaLectura.humedad}}% humedad</p>
                                     <p>ultimo movimiento: {{room.ultimaLectura.movimientoUltimaFecha | formatDate}}</p>
-                                    <p>fecha: {{room.ultimaLectura.fecha |  formatDate}}</p>
+                                    <p>ultima lectura: {{room.ultimaLectura.fecha |  formatDate}}</p>
                                 </div>
                             </div>
                         </div>

@@ -1,8 +1,10 @@
 package com.utn.sear.sensores.controllaboratorio.service;
 
+import com.utn.sear.sensores.controllaboratorio.domain.Error;
 import com.utn.sear.sensores.controllaboratorio.domain.Lectura;
 import com.utn.sear.sensores.controllaboratorio.domain.LecturaVo;
 import com.utn.sear.sensores.controllaboratorio.domain.Room;
+import com.utn.sear.sensores.controllaboratorio.repository.ErrorRepository;
 import com.utn.sear.sensores.controllaboratorio.repository.LecturaRepository;
 import com.utn.sear.sensores.controllaboratorio.repository.RoomRepository;
 import java.util.List;
@@ -18,6 +20,7 @@ public class LecturaService {
 
     private final RoomRepository roomRepository;
     private final LecturaRepository lecturaRepository;
+    private final ErrorRepository errorRepository;
     private final RestTemplate restTemplate;
 
     @Scheduled(fixedRate = 60000)
@@ -35,7 +38,13 @@ public class LecturaService {
         LecturaVo lecturaVo = restTemplate.getForObject("http://" + room.getIp(), LecturaVo.class);
         lecturaVo.setRoomId(room.getId());
         Lectura lectura = lecturaVo.toLectura();
-        lecturaRepository.save(lectura);
+        lectura = lecturaRepository.save(lectura);
+
+        List<Error> errores = lecturaVo.toErrores(lectura.getId());
+
+        for (Error error : errores) {
+            errorRepository.save(error);
+        }
         return lectura;
     }
 }

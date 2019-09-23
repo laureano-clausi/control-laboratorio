@@ -21,6 +21,8 @@ CREATE TABLE lectura (
 CREATE TABLE error (
   id bigint(20) NOT NULL AUTO_INCREMENT,
   lectura_id bigint(20) NOT NULL ,
+  room_id bigint(20) NOT NULL ,
+  fecha datetime,
   mensaje varchar(255),
   PRIMARY KEY (id),
   FOREIGN KEY (lectura_id) REFERENCES lectura(id),
@@ -42,6 +44,6 @@ insert into lectura
 
 
 insert into error 
-(lectura_id, mensaje) values
-(1, 'error al leer la temperatura'),
-(2, 'error al leer la humedad');
+(id,room_id,lectura_id,fecha, mensaje) values
+(1 ,1     ,1         ,now(), 'error al leer la temperatura'),
+(2 ,1     ,1         ,now(), 'error al leer la humedad');

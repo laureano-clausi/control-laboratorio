@@ -4,6 +4,7 @@ import com.utn.sear.sensores.controllaboratorio.domain.Lectura;
 import com.utn.sear.sensores.controllaboratorio.domain.Room;
 import com.utn.sear.sensores.controllaboratorio.domain.RoomConLectura;
 import com.utn.sear.sensores.controllaboratorio.repository.ErrorRepository;
+import com.utn.sear.sensores.controllaboratorio.domain.Error;
 import com.utn.sear.sensores.controllaboratorio.repository.LecturaRepository;
 import com.utn.sear.sensores.controllaboratorio.repository.RoomRepository;
 import com.utn.sear.sensores.controllaboratorio.service.LecturaService;
@@ -90,8 +91,8 @@ public class RoomRestController {
     }
 
     @GetMapping("/rooms/{roomId}/error")
-    public List<String> obtenerLecturaActualPorIp(@PathVariable long roomId) {
-        return errorRepository.findByRoomId(roomId);
+    public List<Error> obtenerLecturaActualPorIp(@PathVariable long roomId) {
+        return errorRepository.findByRoomIdOrderByFechaDesc(roomId);
     }
 
 }

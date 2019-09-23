@@ -8,7 +8,7 @@ Vue.component('crear-room', {
     methods: {
         agregar: function () {
             var self = this;
-            axios.post('/api/rooms', self.room);
+            axios.post('/api/rooms', self.room).then(response => (location.reload()));
         }
     },
     created: function () {
