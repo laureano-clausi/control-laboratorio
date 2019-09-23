@@ -103,7 +103,7 @@ public class RoomRestController {
         return errorRepository.findByRoomIdOrderByFechaDesc(roomId);
     }
 
-    @DeleteMapping("/rooms/{roomId}")
+    @GetMapping("/rooms/{roomId}/borrar")
     public void borrarRoomPorId(@PathVariable long roomId) {
         roomRepository.deleteById(roomId);
     }
