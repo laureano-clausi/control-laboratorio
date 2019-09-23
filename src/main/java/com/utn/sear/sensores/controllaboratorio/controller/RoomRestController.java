@@ -10,6 +10,7 @@ import com.utn.sear.sensores.controllaboratorio.repository.RoomRepository;
 import com.utn.sear.sensores.controllaboratorio.service.LecturaService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,7 +78,14 @@ public class RoomRestController {
 
     @PostMapping("/rooms")
     public Room crear(@RequestBody Room room) {
-        return roomRepository.save(room);
+
+        room = roomRepository.save(room);
+
+        CompletableFuture.runAsync(() -> {
+            lecturaService.obtenerLecturas();
+        });
+
+        return room;
     }
 
     @GetMapping("/live/rooms/{id}")

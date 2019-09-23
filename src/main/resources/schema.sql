@@ -20,7 +20,7 @@ CREATE TABLE lectura (
 
 CREATE TABLE error (
   id bigint(20) NOT NULL AUTO_INCREMENT,
-  lectura_id bigint(20) NOT NULL ,
+  lectura_id bigint(20),
   room_id bigint(20) NOT NULL ,
   fecha datetime,
   mensaje varchar(255),
