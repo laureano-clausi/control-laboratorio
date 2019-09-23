@@ -29,7 +29,7 @@ CREATE TABLE error (
 
 insert into room
 (id , nombre  , ip            ) values 
-(1  , 'room 1', '192.168.1.5' );
+(1  , 'Sala servidores', '192.168.1.5' );
 
 
 insert into lectura
