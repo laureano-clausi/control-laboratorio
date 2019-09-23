@@ -13,8 +13,7 @@ CREATE TABLE lectura (
   humedad varchar(255),
   movimiento bit(1) NOT NULL DEFAULT 0,
   fecha datetime,
-  PRIMARY KEY (id),
- FOREIGN KEY (room_id) REFERENCES room(id)
+  PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 
