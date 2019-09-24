@@ -26,3 +26,14 @@ GET /api/rooms
 GET /api/live/rooms/{ip}
 
 
+## Servidor
+ip: 192.168.2.212
+user:sear
+
+### ruta instalación
+/home/sear/control-laboratorio
+
+### deploy
+java -jar control-laboratorio-0.0.1.jar &
+
+
