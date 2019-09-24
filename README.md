@@ -7,6 +7,7 @@ Por ahora utiliza una BD en memoria.
 - Java 11
 
 ## Links útiles
+documentacion proyecto arduino: /control-laboratorio/doc/arduino/
 
 ## Para compilar 
 mvn clean install
