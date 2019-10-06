@@ -18,7 +18,7 @@ LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 #define DHTPIN 30//31
 #define DHTTYPE DHT11
 
-IPAddress ip(169, 254,100, 204);
+IPAddress ip(192, 168, 2, 213);
 IPAddress myDns(192,168,0, 1);
 IPAddress gateway(192, 168, 0, 1);
 IPAddress subnet(255, 255, 255, 0);
@@ -100,8 +100,6 @@ bool fueLeidoErrorPorAlarma = true;
 // Movimiento + alarma
 int movimiento = 0;
 bool modoAlarmaActivo = false;
-
-
 
 //tamanio del buffer para los json
 #define BUFFER_JSON 1024
@@ -217,8 +215,8 @@ void lecturaDeTemperatura(){
   int humedadTruncada = humedad;
 
   lcd.noBlink();
-  lcd.setCursor(4,1);
-  lcd.print("T:");
+  lcd.setCursor(3,1);
+  lcd.print(" T:");
   lcd.print(bufferResultadoT);
   lcd.print(" H:");
   lcd.print(humedadTruncada);
@@ -241,7 +239,7 @@ void procesarInputTeclado(){
       } else {
         modoAlarmaActivo = true;
       }
-  }  
+  }
 
   if(enModoLecturaNuevaIP){
     lcd.blink();
@@ -305,7 +303,7 @@ void lecturaMovimientoYBuzzer(){
   tiempoUltimoBuzz = millis();
   
   digitalWrite(BUZZER_PIN,HIGH);
-  delay(80);
+  delay(580);
   digitalWrite(BUZZER_PIN,LOW);
  }
 
@@ -384,7 +382,7 @@ void revisarErrores(){
 void inicializarDisplay(){
 
   lcd.begin(16, 2);
-  lcd.print("192.168.002.081");
+  lcd.print("192.168.002.213");
 
   lcd.createChar(0, alarma_off);
   lcd.createChar(1, alarma_on);
